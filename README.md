@@ -6,7 +6,7 @@ This example shows how to authenticate, make API calls, and process responses fo
 
 > Please note this quickstart applies to version v of the API for Shift iQ.
 
-You can explore the OpenAPI (Swagger) specification here: [CMDS API version 2](https://dev-api.shiftiq.com/v2/e01/swagger)
+You can explore the OpenAPI (Swagger) specification here: [Shift API version 2](https://dev-api.shiftiq.com/v2/e01/swagger)
 
 ## Table of Contents
 
@@ -72,9 +72,9 @@ Update the configuration file with your API credentials:
 ```json
 {
   "ApiQuickstart": {
-    "Secret": "your-actual-client-secret-here",
-    "BaseUrl": "https://dev-api.shiftiq.com/v2/YOUR-PARTITION/",
-    "UserAgent": "ApiQuickstartExample/1.0 (Shift iQ; YOUR-O/S; .NET 9.0)",
+    "Secret": "YOUR CLIENT SECRET",
+    "BaseUrl": "YOUR API BASE URL",
+    "UserAgent": "ApiQuickstartExample/1.0 (Shift iQ; YOUR O/S; .NET 9.0)",
     "TimeoutSeconds": 30
   }
 }

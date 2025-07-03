@@ -2,7 +2,7 @@
 
 This repository includes the source code for a C# .NET console application that demonstrates how to interact with the API using an HTTP client. 
 
-This example shows how to authenticate, make API calls, and process responses for departments, learners, and competency profiles. The API provides much more, of course. The source code here is intended as an example only, to help you get started working with the API.
+This example shows how to authenticate, make API calls, and process responses for groups, user accounts, and gradebooks. The API provides much more, of course. The source code here is intended as an example only, to help you get started working with the API.
 
 > Please note this quickstart applies to version v of the API for Shift iQ.
 

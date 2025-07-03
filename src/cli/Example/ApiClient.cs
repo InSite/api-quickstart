@@ -25,7 +25,7 @@ namespace ApiQuickstartExample
         /// <summary>
         /// Initialize the HTTP client with a client secret.
         /// </summary>
-        public ApiClient(string clientSecret, string baseUrl, string userAgent, int timeoutInSeconds)
+        public ApiClient(string clientSecret, string baseUrl, string userAgent, int timeoutInSeconds = 30)
         {
             if (string.IsNullOrEmpty(clientSecret))
                 throw new ArgumentException("Client secret cannot be null or empty", nameof(clientSecret));

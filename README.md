@@ -74,7 +74,7 @@ Update the configuration file with your API credentials:
   "ApiQuickstart": {
     "Secret": "YOUR CLIENT SECRET",
     "BaseUrl": "YOUR API BASE URL",
-    "UserAgent": "ApiQuickstartExample/1.0 (Shift iQ; YOUR O/S; .NET 9.0)",
+    "UserAgent": "ApiQuickstartExample/1.0 (YOUR SYSTEM INFO)",
     "TimeoutSeconds": 30
   }
 }
@@ -94,7 +94,7 @@ Alternatively, you can set configuration options using environment variables:
 |----------|-------------|----------|
 | `Secret` | Your API client secret for authentication | Yes |
 | `BaseUrl` | The base URL of your API instance | Yes |
-| `UserAgent` | User agent string for API requests | Yes |
+| `UserAgent` | User agent string for API requests | No (default: auto detect) |
 | `TimeoutSeconds` | Request timeout in seconds | No (default: 30) |
 
 ## Project Structure

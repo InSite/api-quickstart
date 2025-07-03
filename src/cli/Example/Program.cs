@@ -20,7 +20,9 @@ namespace ApiQuickstartExample
         {
             var settings = LoadAppSettings();
 
-            using (var client = new ApiClient(settings.Secret, settings.BaseUrl, settings.UserAgent))
+            WriteLine("User Agent: " + settings.UserAgent);
+
+            using (var client = new ApiClient(settings.Secret, settings.BaseUrl, settings.UserAgent, settings.TimeoutSeconds))
             {
                 if (!IsHealthy(client))
                 {
@@ -77,6 +79,12 @@ namespace ApiQuickstartExample
 
             configuration.GetSection("ApiQuickstart").Bind(settings);
 
+            if (string.IsNullOrEmpty(settings.UserAgent))
+                settings.UserAgent = UserAgentGenerator.Generate("ApiQuickStartExample");
+
+            if (settings.TimeoutSeconds < 1 || settings.TimeoutSeconds > 300)
+                settings.TimeoutSeconds = 30;
+                
             return settings;
         }
 

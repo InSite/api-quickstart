@@ -1,0 +1,93 @@
+﻿using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+using Example;
+using Example.Models;
+
+using Microsoft.Extensions.Configuration;
+
+namespace ApiQuickstartExample
+{
+    public class Program
+    {
+        public static string ApiHealth { get; set; }
+
+        public static void WriteLine(string value)
+            => Console.WriteLine(value + Environment.NewLine);
+
+        public static async Task<int> Main(string[] args)
+        {
+            var settings = LoadAppSettings();
+
+            using (var client = new ApiClient(settings.Secret, settings.BaseUrl, settings.UserAgent))
+            {
+                if (!IsHealthy(client))
+                {
+                    WriteLine("Sorry, the API is currently offline.");
+                    return await Task.FromResult(1);
+                }
+
+                WriteLine(ApiHealth);
+
+                await ConfigureAccessTokenAsync(client, settings.Secret);
+
+                var basicGradebookSearchCriteria = string.Empty;
+
+                if (args.Length == 1)
+                    basicGradebookSearchCriteria = args[0];
+
+                var app = new Application(client, basicGradebookSearchCriteria);
+
+                app.Run(WriteLine);
+            }
+
+            return await Task.FromResult(0);
+        }
+
+        private static async Task<Jwt> RetrieveJwt(ApiClient client, string secret)
+        {
+            var data = new { Secret = secret, Debug = true };
+
+            var json = (await client.PostAsync("security/tokens/generate", data)).Data;
+
+            var jwt = JsonSerializer.Deserialize<Jwt>(json);
+
+            return jwt;
+        }
+
+        private static async Task ConfigureAccessTokenAsync(ApiClient client, string secret)
+        {
+            var jwt = await RetrieveJwt(client, secret);
+
+            WriteLine($"{jwt.TokenType} access token generated. It expires in {jwt.ExpiresInMinutes} minutes.");
+
+            client.UpdateClientSecret(jwt.AccessToken);
+        }
+
+        private static ApplicationSettings LoadAppSettings()
+        {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .Build();
+
+            var settings = new ApplicationSettings();
+
+            configuration.GetSection("ApiQuickstart").Bind(settings);
+
+            return settings;
+        }
+
+        private static bool IsHealthy(ApiClient client)
+        {
+            var response = client.Get("platform/health");
+
+            if (response.Success)
+                ApiHealth = response.Data;
+
+            return response.Success;
+        }
+    }
+}

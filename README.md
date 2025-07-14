@@ -6,7 +6,7 @@ This example shows how to authenticate, make API calls, and process responses fo
 
 > Please note this quickstart applies only to version 2 of the API for Shift iQ.
 
-You can explore the OpenAPI (Swagger) specification here: [Shift API version 2](https://dev-api.shiftiq.com/v2/e01/swagger)
+You can explore the API documentation here: [Shift API version 2](https://docs.shiftiq.com/developers/api-v2/introduction)
 
 ## Table of Contents
 
@@ -161,6 +161,8 @@ var groups = JsonSerializer.Deserialize<Group[]>(response.Data);
 ### Authentication
 - **Bearer token authentication** using client secret
 - **Automatic header management** for all requests
+
+> **Cookie token authentication** is also available for more specialized (and more advanced) integration scenarios. An example is provided in the src/web folder of this repository.
 
 ### Request Handling
 - **GET requests** with query parameters

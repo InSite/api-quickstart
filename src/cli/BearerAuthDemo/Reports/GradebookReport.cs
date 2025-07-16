@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Text;
 
-namespace Example;
+namespace BearerAuthDemo;
 
 public class GradebookReport
 {
@@ -13,20 +13,19 @@ public class GradebookReport
         var total = totalGradebookCount;
 
         output.AppendLine("## GRADEBOOK SUMMARY");
-            
+
         output.AppendLine($"Your organization contains {total:n0} gradebooks.");
 
         var count = gradebookMatches.Count();
 
         var percent = total > 0 ? (decimal)count / total : 0m;
 
-        output.AppendLine($"  {count} gradebooks ({percent:p2}) have a name that contains the term `{criterion}`:");
+        if (!string.IsNullOrEmpty(criterion))
+            output.AppendLine($"  {count} gradebooks ({percent:p2}) have a title that contains \"{criterion}\":");
 
         foreach (var match in gradebookMatches)
-        {
             output.AppendLine($"    - {match.GradebookTitle} ({match.GradebookEnrollmentCount} learners)");
-        }
-        
+
         return output.ToString();
     }
 }

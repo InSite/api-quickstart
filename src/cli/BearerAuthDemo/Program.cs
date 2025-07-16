@@ -2,12 +2,9 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 
-using Example;
-using Example.Models;
-
 using Microsoft.Extensions.Configuration;
 
-namespace ApiQuickstartExample
+namespace BearerAuthDemo
 {
     public class Program
     {
@@ -77,10 +74,10 @@ namespace ApiQuickstartExample
 
             var settings = new ApplicationSettings();
 
-            configuration.GetSection("ApiQuickstart").Bind(settings);
+            configuration.GetSection("BearerAuthDemo").Bind(settings);
 
             if (string.IsNullOrEmpty(settings.UserAgent))
-                settings.UserAgent = UserAgentGenerator.Generate("ApiQuickStartExample");
+                settings.UserAgent = UserAgentGenerator.Generate();
 
             if (settings.TimeoutSeconds < 1 || settings.TimeoutSeconds > 300)
                 settings.TimeoutSeconds = 30;

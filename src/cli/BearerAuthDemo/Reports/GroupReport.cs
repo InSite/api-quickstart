@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Example;
+namespace BearerAuthDemo;
 
 public class GroupReport
 {

@@ -2,6 +2,8 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
+namespace BearerAuthDemo;
+
 public static class UserAgentGenerator
 {
     /// <summary>
@@ -43,7 +45,7 @@ public static class UserAgentGenerator
     {
         var platform = GetPlatformName();
         var architecture = RuntimeInformation.ProcessArchitecture.ToString();
-        
+
         return $"{platform}; {architecture}";
     }
 
@@ -79,7 +81,7 @@ public static class UserAgentGenerator
         {
             return "FreeBSD";
         }
-        
+
         return "Unknown";
     }
 
@@ -89,7 +91,7 @@ public static class UserAgentGenerator
     private static string GetFrameworkInfo()
     {
         var frameworkDescription = RuntimeInformation.FrameworkDescription;
-        
+
         // Clean up the framework description for User-Agent format
         // ".NET 9.0.0" -> "NET/9.0.0"
         if (frameworkDescription.StartsWith(".NET "))
@@ -97,7 +99,7 @@ public static class UserAgentGenerator
             var version = frameworkDescription.Substring(5);
             return $"NET/{version}";
         }
-        
+
         return frameworkDescription.Replace(" ", "").Replace(".", "/");
     }
 

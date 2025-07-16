@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace ApiQuickstartExample
+namespace BearerAuthDemo
 {
     /// <summary>
     /// A bare-metal HTTP client that includes client secret in bearer authorization header. Uses modern HttpClient with 
@@ -202,6 +202,15 @@ namespace ApiQuickstartExample
             Dictionary<string, string> headers = null)
         {
             return MakeRequestAsync(HttpMethod.Get, url, null, headers, parameters);
+        }
+
+        /// <summary>
+        /// Make a POST request.
+        /// </summary>
+        public ApiResponse Post(string url, object data = null,
+            Dictionary<string, string> headers = null, Dictionary<string, string> parameters = null)
+        {
+            return MakeRequest(HttpMethod.Post, url, data, headers, parameters);
         }
 
         /// <summary>

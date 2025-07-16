@@ -1,6 +1,6 @@
 using System;
 
-namespace Example;
+namespace BearerAuthDemo;
 
 public class User
 {

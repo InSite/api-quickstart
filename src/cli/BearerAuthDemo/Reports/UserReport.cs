@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Text;
 
-namespace Example;
+namespace BearerAuthDemo;
 
 public class UserReport
 {

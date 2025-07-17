@@ -29,7 +29,9 @@ public class PaginationDemo
 
         var (pagination, items) = GetGradebooksPage(pageIndex, pageSize);
 
-        var itemTotal = pagination.ItemTotal;
+        var itemTotal = pagination.TotalCount;
+
+        var totalPageCount = pagination.CountPages();
 
         report.AppendLine($"Watch me page through {itemTotal} gradebooks using a page size of {pageSize} items per page!");
 
@@ -37,11 +39,9 @@ public class PaginationDemo
         {
             var currentPageIndex = pagination.Page;
 
-            var currentPageItemCount = pagination.ItemCount;
+            var currentPageItemCount = items.Length;
 
-            var totalPageCount = pagination.PageCount;
-
-            report.AppendLine($"  - Page {currentPageIndex} of {totalPageCount} has {currentPageItemCount} items ({(pagination.More ? "more" : "no more")})");
+            report.AppendLine($"  - Page {currentPageIndex} of {totalPageCount} has {currentPageItemCount} items ({(pagination.HasMore() ? "more" : "no more")})");
 
             currentPageIndex++;
 

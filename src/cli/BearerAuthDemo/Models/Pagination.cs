@@ -13,27 +13,22 @@ public class Pagination
     public int Page { get; set; }
 
     /// <summary>
-    /// The requested number of items per page
+    /// The number of items requested per page
     /// </summary>
     public int PageSize { get; set; }
 
     /// <summary>
-    /// The actual number of items returned in the response
-    /// </summary>
-    public int ItemCount { get; set; }
-
-    /// <summary>
     /// The total number of items in the data set
     /// </summary>
-    public int ItemTotal { get; set; }
+    public int TotalCount { get; set; }
 
     /// <summary>
     /// The total number of pages in the data set
     /// </summary>
-    public int PageCount => (int)System.Math.Ceiling((double)ItemTotal / PageSize);
+    public int CountPages() => (int)System.Math.Ceiling((double)TotalCount / PageSize);
 
     /// <summary>
     /// True if this is not the last page
     /// </summary>
-    public bool More => Page < PageCount;
+    public bool HasMore() => Page < CountPages();
 }

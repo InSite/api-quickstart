@@ -20,4 +20,4 @@ You can explore the documentation here: [Developer Documentation](https://docs.s
 
 ## License
 
-This project is licensed under the Unlicense - see the \[LICENSE](LICENSE) file for details.
+This project is licensed under the Unlicense - see the [LICENSE](LICENSE) file for details.
